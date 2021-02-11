@@ -9,7 +9,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //ProductList();
+            ProductList();
+            //CategoryList();
+        }
+
+        private static void CategoryList()
+        {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
             foreach (var item in categoryManager.GetAll())
             {
@@ -20,10 +25,9 @@ namespace ConsoleUI
         private static void ProductList()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var item in productManager.GetByUnitPrice(40, 100))
+            foreach (var item in productManager.GetProductDetails())
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(item.ProductName);
+                Console.WriteLine(item.ProductName + " / " + item.CategoryName);
             }
         }
     }
