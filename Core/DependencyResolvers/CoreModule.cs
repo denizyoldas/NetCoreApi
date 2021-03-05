@@ -6,6 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Core.DependencyResolvers
@@ -17,6 +18,7 @@ namespace Core.DependencyResolvers
             serviceDescriptors.AddMemoryCache();
             serviceDescriptors.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             serviceDescriptors.AddSingleton<ICacheManager, MemoryCacheManager>();
+            serviceDescriptors.AddSingleton<Stopwatch>();
         }
     }
 }
