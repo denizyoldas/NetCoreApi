@@ -20,6 +20,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -64,6 +65,12 @@ namespace WebAPI
                 };
             });
 
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.IncludeXmlComments(Path.ChangeExtension(typeof(Startup).Assembly.Location, ".xml"));
+
+            //});
+
             services.AddDependencyResolvers(new ICoreModule[] {
                 new CoreModule()
             });
@@ -79,6 +86,16 @@ namespace WebAPI
             }
 
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+
+            //app.UseCors("AllowOrigin");
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "DYArch"); // https://localhost:44380/swagger/index.html
+
+            });
 
             app.UseHttpsRedirection();
 
