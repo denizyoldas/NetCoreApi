@@ -1,5 +1,6 @@
 ﻿using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Caching.Microsoft;
+using Core.CrossCuttingConcerns.Caching.Redis;
 using Core.Utilities.IoC;
 using Core.Utilities.Messages;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,7 @@ namespace Core.DependencyResolvers
             serviceDescriptors.AddMemoryCache();
             serviceDescriptors.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             serviceDescriptors.AddSingleton<ICacheManager, MemoryCacheManager>();
+            //serviceDescriptors.AddSingleton<ICacheManager, RedisCacheManager>();
             serviceDescriptors.AddSingleton<Stopwatch>();
 
             serviceDescriptors.AddSwaggerGen(c =>
